@@ -4,9 +4,12 @@ const dotenv = require('dotenv');
 const authRoutes = require('./routes/auth');
 const taskRoutes = require('./routes/tasks');
 const https = require('https');
+const cors = require('cors');
 
 dotenv.config();
 const app = express();
+
+app.use(cors());
 
 // Middleware
 app.use(express.json());
