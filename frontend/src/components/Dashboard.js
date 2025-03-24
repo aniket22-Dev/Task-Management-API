@@ -43,7 +43,7 @@ const Dashboard = () => {
     const fetchTasks = async () => {
         try {
             setLoading(true); // Set loading to true when fetching tasks
-            const response = await api.get('/api/tasks/get-tasks', {
+            const response = await api.get('/api/tasks', {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`, // Include JWT token
                 },
@@ -65,7 +65,7 @@ const Dashboard = () => {
 
             // If editing a task, update it
             if (editingTask) {
-                await api.put(`/api/tasks/update-task/${editingTask._id}`, taskData, {
+                await api.put(`/api/tasks/${editingTask._id}`, taskData, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`, // Include JWT token
                     },
@@ -73,7 +73,7 @@ const Dashboard = () => {
                 toast.success('Task updated successfully!'); // Show success message
             } else {
                 // If creating a new task, create it
-                await api.post('/api/tasks/create-task', taskData, {
+                await api.post('/api/tasks', taskData, {
                     headers: {
                         Authorization: `Bearer ${localStorage.getItem('token')}`, // Include JWT token
                     },
@@ -95,7 +95,7 @@ const Dashboard = () => {
     const handleDelete = async (taskId) => {
         setLoading(true); // Set loading to true while deleting the task
         try {
-            await api.delete(`/api/tasks/delete-task/${taskId}`, {
+            await api.delete(`/api/tasks/${taskId}`, {
                 headers: {
                     Authorization: `Bearer ${localStorage.getItem('token')}`, // Include JWT token
                 },
