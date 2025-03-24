@@ -26,7 +26,7 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
 setInterval(() => {
-    https.get('https://task-management-api-bf0l.onrender.com', (res) => {
+    https.get(process.env.PING_URL, (res) => {
     }).on('error', (error) => {
         console.error("Error pinging the server:", error.message);
     });
