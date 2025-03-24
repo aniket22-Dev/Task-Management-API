@@ -10,6 +10,11 @@ const app = express();
 // Middleware
 app.use(express.json());
 
+// Health check route to confirm the server is running
+app.get('/', (req, res) => {
+    res.status(200).json({ message: 'Server is running' });
+});
+
 // Routes
 app.use('/api/auth', authRoutes);
 app.use('/api/tasks', taskRoutes);
@@ -19,3 +24,10 @@ mongoose.connect(process.env.MONGO_URI).then(() => console.log('Connected to Mon
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+setInterval(() => {
+    https.get('https://task-management-api-bf0l.onrender.com', (res) => {
+    }).on('error', (error) => {
+        console.error("Error pinging the server:", error.message);
+    });
+}, 30000);
