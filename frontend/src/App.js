@@ -3,6 +3,7 @@ import { Route, Routes, BrowserRouter, Link } from 'react-router-dom';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
+import './App.css';
 
 const App = () => {
   return (
@@ -14,15 +15,14 @@ const App = () => {
         <Route
           path="/"
           element={
-            <div>
-              <h1>Welcome to the Task Manager</h1>
-              <div>
-                {/* Redirect to login and signup */}
+            <div className="home-container">
+              <h1 className="home-title">Welcome to the Task Manager</h1>
+              <div className="home-buttons">
                 <Link to="/login">
-                  <button>Login</button>
+                  <button className="home-button">Login</button>
                 </Link>
                 <Link to="/signup" style={{ marginLeft: '10px' }}>
-                  <button>Signup</button>
+                  <button className="home-button">Signup</button>
                 </Link>
               </div>
             </div>
