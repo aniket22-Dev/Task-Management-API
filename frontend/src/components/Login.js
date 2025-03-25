@@ -18,6 +18,10 @@ const Login = () => {
         }
     };
 
+    const handleSignupRedirect = () => {
+        navigate('/signup');  // Redirect to signup page
+    };
+
     return (
         <div className="login-container">
             <h2 className="login-title">Login</h2>
@@ -40,6 +44,9 @@ const Login = () => {
                 />
                 <button className="login-button" type="submit">Login</button>
             </form>
+            <div className="signup-redirect">
+                <p>Not Signed Up? <span className="signup-link" onClick={handleSignupRedirect}>Sign Up</span></p>
+            </div>
         </div>
     );
 };
