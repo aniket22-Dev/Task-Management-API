@@ -1,21 +1,27 @@
-import React, { useState, useContext, createContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Route, Routes, BrowserRouter, Link, Navigate } from 'react-router-dom';
 import Signup from './components/Signup';
 import Login from './components/Login';
 import Dashboard from './components/Dashboard';
+import AuthContext from './contexts/AuthContext';
 import './App.css';
 
-// Create a context for user authentication
-const AuthContext = createContext();
-
-// Custom hook to use authentication
-const useAuth = () => {
-  return useContext(AuthContext);
-};
-
-// App component
 const App = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Track login status
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    !!localStorage.getItem('token')
+  );
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    setIsAuthenticated(false);
+  };
 
   return (
     <AuthContext.Provider value={{ isAuthenticated, setIsAuthenticated }}>
@@ -23,13 +29,12 @@ const App = () => {
         <Routes>
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
-
-          {/* Protected route: only accessible when authenticated */}
           <Route
             path="/dashboard"
-            element={isAuthenticated ? <Dashboard /> : <Navigate to="/login" />}
+            element={
+              isAuthenticated ? <Dashboard /> : <Navigate to="/login" />
+            }
           />
-
           <Route
             path="/"
             element={

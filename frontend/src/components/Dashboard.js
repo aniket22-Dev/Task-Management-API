@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import api from '../services/api';
 import Modal from 'react-modal';
 import 'font-awesome/css/font-awesome.min.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { PulseLoader } from 'react-spinners';
 import 'react-toastify/dist/ReactToastify.css';
+import AuthContext from '../contexts/AuthContext';
 
 Modal.setAppElement('#root');
 
@@ -17,6 +19,15 @@ const Dashboard = () => {
     const [tasks, setTasks] = useState([]);
     const [editingTask, setEditingTask] = useState(null);
     const [loading, setLoading] = useState(false);
+
+    const { setIsAuthenticated } = useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        localStorage.removeItem('token');
+        setIsAuthenticated(false);
+        navigate('/login');
+    };
 
     const openModal = (task) => {
         if (task) {
@@ -109,6 +120,10 @@ const Dashboard = () => {
 
     return (
         <div className="dashboard-container">
+            <button onClick={handleLogout} className="logout-button">
+                Logout
+            </button>
+
             <h2 className="dashboard-header">Your Tasks</h2>
             <button className="create-task-button" onClick={() => openModal(null)} disabled={loading}>
                 Create Task
@@ -165,7 +180,6 @@ const Dashboard = () => {
                         {editingTask ? 'Update Task' : 'Create Task'}
                     </button>
                 </form>
-
             </Modal>
 
             {loading && (
