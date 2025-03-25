@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "de7f12b9-3f5b-4b75-84cc-da440d0d164d",
+		"name": "Task-Management-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json",
+		"_exporter_id": "26823451"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "SignUp",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\":\"aniket bhatnagar\",\n    \"email\": \"aniket.bhatnagar19@gmail.com\",\n    \"password\": \"9810189819Ab!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/auth/signup"
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"aniket.bhatnagar19@gmail.com\",\n    \"password\": \"9810189819Ab!\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/auth/login"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Task",
+			"item": [
+				{
+					"name": "Create-Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTE3MjNhMWI4ZjVlNjkxYzBmNDY2YyIsImlhdCI6MTc0MjgyODk4OCwiZXhwIjoxNzQyODMyNTg4fQ.iG84-Sg9OkoFRl8SmFl2Qug5kEXUFYUnOc3tikwgmx4"
+							}
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\":\"Meeting\",\n    \"description\": \"Daily Standup\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/tasks"
+					},
+					"response": []
+				},
+				{
+					"name": "Get-Task",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTE3MjNhMWI4ZjVlNjkxYzBmNDY2YyIsImlhdCI6MTc0MjgyODk4OCwiZXhwIjoxNzQyODMyNTg4fQ.iG84-Sg9OkoFRl8SmFl2Qug5kEXUFYUnOc3tikwgmx4"
+							}
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\":\"Meeting\",\n    \"description\": \"Daily Standup\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/tasks"
+					},
+					"response": []
+				},
+				{
+					"name": "Update-Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTE3MjNhMWI4ZjVlNjkxYzBmNDY2YyIsImlhdCI6MTc0MjgyODk4OCwiZXhwIjoxNzQyODMyNTg4fQ.iG84-Sg9OkoFRl8SmFl2Qug5kEXUFYUnOc3tikwgmx4"
+							}
+						},
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"_id\": \"67e175c82cdfb078c6e9f142\",\n        \"title\": \"Meeting\",\n        \"description\": \"Daily Standup\",\n        \"status\": \"completed\",\n        \"userId\": \"67e1723a1b8f5e691c0f466c\",\n        \"createdAt\": \"2025-03-24T15:10:00.750Z\",\n        \"updatedAt\": \"2025-03-24T15:10:00.750Z\",\n        \"__v\": 0\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": "http://localhost:5000/api/tasks/67e175c82cdfb078c6e9f142"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete-Task",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": {
+								"token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3ZTE3MjNhMWI4ZjVlNjkxYzBmNDY2YyIsImlhdCI6MTc0MjgyODk4OCwiZXhwIjoxNzQyODMyNTg4fQ.iG84-Sg9OkoFRl8SmFl2Qug5kEXUFYUnOc3tikwgmx4"
+							}
+						},
+						"method": "DELETE",
+						"header": [],
+						"url": "http://localhost:5000/api/tasks/67e175c82cdfb078c6e9f142"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
