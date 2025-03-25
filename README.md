@@ -2,11 +2,10 @@
 
 This project is a Task Management API with a frontend deployed on Vercel and a backend deployed on Render.
 
-- **JWT SECRET KEY GENERATED USING**: 
-      ```bash
-      node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
-      ```
-
+- **JWT SECRET KEY GENERATED USING**:
+  ```bash
+    node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
+    ```
 ## Project URLs
 
 - **Frontend URL (Vercel)**: [https://task-management-api-topaz.vercel.app](https://task-management-api-topaz.vercel.app)
