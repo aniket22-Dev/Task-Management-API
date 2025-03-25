@@ -7,8 +7,14 @@ const signup = async (req, res) => {
     try {
         const user = new User({ name, email, password });
         await user.save();
+
+        console.log('User Created', user);
+
         res.status(201).json({ message: 'User created successfully' });
     } catch (err) {
+
+        console.error("Error Creating User");
+
         res.status(400).json({ message: 'Error creating user', error: err });
     }
 };
@@ -23,8 +29,14 @@ const login = async (req, res) => {
         if (!isMatch) return res.status(400).json({ message: 'Invalid credentials' });
 
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+        console.log(`User Logged In Successfully ${token}`)
+
         res.status(200).json({ token });
     } catch (err) {
+
+        console.error('Error Login User')
+
         res.status(500).json({ message: 'Error logging in', error: err });
     }
 };

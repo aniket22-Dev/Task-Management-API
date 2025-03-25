@@ -9,8 +9,14 @@ const createTask = async (req, res) => {
             userId: req.user.id
         });
         await task.save();
+
+        console.log('Task Created Successfully', task);
+        
         res.status(201).json(task);
     } catch (err) {
+        
+        console.error("Error Creating Task");
+
         res.status(400).json({ message: 'Error creating task', error: err });
     }
 };
@@ -38,6 +44,9 @@ const updateTask = async (req, res) => {
         task.status = status;
         task.updatedAt = Date.now();
         await task.save();
+
+        console.log(`Task Updated Successfully ${id}`);
+        
         res.status(200).json(task);
     } catch (err) {
         res.status(400).json({ message: 'Error updating task', error: err });
@@ -55,6 +64,9 @@ const deleteTask = async (req, res) => {
         }
 
         await Task.deleteOne({ _id: id });
+
+        console.log(`Task Deleted with ${id}`);
+        
         res.status(200).json({ message: 'Task deleted' });
     } catch (err) {
         console.error('Error deleting task:', err);
