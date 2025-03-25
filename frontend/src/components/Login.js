@@ -6,6 +6,7 @@ const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const navigate = useNavigate();
+
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -18,10 +19,11 @@ const Login = () => {
     };
 
     return (
-        <div>
-            <h2>Login</h2>
+        <div className="login-container">
+            <h2 className="login-title">Login</h2>
             <form onSubmit={handleSubmit}>
                 <input
+                    className="login-input"
                     type="email"
                     placeholder="Email"
                     value={email}
@@ -29,13 +31,14 @@ const Login = () => {
                     required
                 />
                 <input
+                    className="login-input"
                     type="password"
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-                <button type="submit">Login</button>
+                <button className="login-button" type="submit">Login</button>
             </form>
         </div>
     );

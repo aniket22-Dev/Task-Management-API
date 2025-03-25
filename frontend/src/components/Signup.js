@@ -12,17 +12,18 @@ const Signup = () => {
         e.preventDefault();
         try {
             await api.post('api/auth/signup', { name, email, password });
-            navigate('/login');  // Redirect to login after successful signup
+            navigate('/login');
         } catch (err) {
             console.error('Error during signup', err);
         }
     };
 
     return (
-        <div>
-            <h2>Signup</h2>
-            <form onSubmit={handleSubmit}>
+        <div className="signup-container">
+            <h2 className="signup-title">Sign Up</h2>
+            <form onSubmit={handleSubmit} className="signup-form">
                 <input
+                    className="signup-input"
                     type="text"
                     placeholder="Name"
                     value={name}
@@ -30,6 +31,7 @@ const Signup = () => {
                     required
                 />
                 <input
+                    className="signup-input"
                     type="email"
                     placeholder="Email"
                     value={email}
@@ -37,13 +39,14 @@ const Signup = () => {
                     required
                 />
                 <input
+                    className="signup-input"
                     type="password"
                     placeholder="Password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
                 />
-                <button type="submit">Sign Up</button>
+                <button className="signup-button" type="submit">Sign Up</button>
             </form>
         </div>
     );
