@@ -18,7 +18,7 @@ const Login = () => {
 
             if (response.data.token) {
                 localStorage.setItem('token', response.data.token);
-                setIsAuthenticated(true); // ✅ update global auth state
+                setIsAuthenticated(true); //update global auth state
                 navigate('/dashboard');
             } else {
                 setLoading(false);
